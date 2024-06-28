@@ -1,74 +1,41 @@
-import{StaylesSheet, Text,View} from 'react-native';
-import react from 'react'
-const App = () => {
-  return (
-    <View
-      style={{
-        flex: 1,
-        flexDirection: "row",
-      }}
-    >
-      <View
-        style={{
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <View
-          style={{
-            width: 137,
-            height: 25,
-            backgroundColor: "red", 
-            borderRadius: 25,
-            marginRight: 5,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Text
-            style={{
-              color: "white",
-              fontSize: 17,
-              fontWeight: "bold",
-            }}
-          >
-            SIGN IN
-          </Text>
-        </View>
-      </View>
 
-      <View
-        style={{
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <View
-          style={{
-            width: 137,
-            height: 25,
-            backgroundColor: "blue", 
-            borderRadius: 25,
-            marginLeft: 5,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Text
-            style={{
-              color: "white",
-              fontSize: 17,
-              fontWeight: "bold",
-            }}
-          >
-            SIGN UP
-          </Text>
-        </View>
-      </View>
+import React from 'react';
+import { View, Text } from 'react-native';
+import { useFonts } from 'expo-font';
+
+const  App = ()  => {
+  const [fontloaded] = useFonts({
+    MetroBlack: require('./assets/fonts/Metropolis-Black.otf'),
+    MetroBold : require('./assets/fonts/Metropolis-Bold.otf'),
+    MetroLigth: require('./assets/fonts/Metropolis-Light.otf'),
+    MetroSemiBold: require('./assets/fonts/Metropolis-SemiBold.otf'),
+  });
+  if(!fontloaded){
+    return<Text>font tidak ditemukan</Text>
+  }
+  return(
+    <View style={{
+     flex:1,
+     justifyContent:'center',
+     alignItems:'center',
+    }}>
+      <Text style={{
+        fontFamily:"MetroBlack",
+        fontSize:  30,
+      }}>Font metropolis Black</Text>
+       <Text style={{
+        fontFamily:"MetroBold",
+        fontSize:  30,
+      }}>Font metropolis Bold</Text>
+       <Text style={{
+        fontFamily:"MetroLight'",
+        fontSize:30,
+      }}>Font metropolis light</Text>
+       <Text style={{
+        fontFamily:"MetroSemiBold'",
+        fontSize:30,
+      }}>Font metropolis  semibold</Text>
     </View>
-  );
-};
-
-export default App;
+  )
+}
+export  default  App
