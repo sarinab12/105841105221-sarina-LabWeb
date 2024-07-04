@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 import { useFonts } from 'expo-font';
+import { useNavigation } from '@react-navigation/native';
 
-// Komponen kustom, ButtonCustom
-const ButtonCustom = ({ text, color, onPress }) => {
+const ButtonCustom = ({ text, color,onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} style={[styles.button, { backgroundColor: color }]}>
       <Text style={styles.buttonText}>{text}</Text>
@@ -11,7 +11,6 @@ const ButtonCustom = ({ text, color, onPress }) => {
   );
 };
 
-// Komponen kustom, TextInputCustom
 const TextInputCustom = ({ placeholder, color, typeKeyboard, secureTextEntry }) => {
   return (
     <TextInput
@@ -23,8 +22,9 @@ const TextInputCustom = ({ placeholder, color, typeKeyboard, secureTextEntry }) 
   );
 };
 
-export default function SignUp() {
-  const [fontLoaded] = useFonts({
+export default function Login() {
+  const navigation = useNavigation();
+  const [fontLoaded] = useFonts ({
     MetroBold: require('./assets/fonts/Metropolis-Bold.otf'),
     MetroMedium: require('./assets/fonts/Metropolis-Medium.otf'),
   });
@@ -35,13 +35,12 @@ export default function SignUp() {
 
   return (
     <View style={styles.container}>
-      <Text style={[styles.title, { fontFamily: 'MetroBold' }]}>Sign up</Text>
-      <TextInputCustom placeholder="Name" color="gray" typeKeyboard="default" />
+      <Text style={[styles.title, { fontFamily: 'MetroBold' }]}>Login</Text>
       <TextInputCustom placeholder="Email" color="gray" typeKeyboard="email-address" />
       <TextInputCustom placeholder="Password" color="gray" typeKeyboard="default" secureTextEntry={true} />
-      <Text style={[styles.alreadyAccountText, { fontFamily: 'MetroMedium' }]}>Already have an account?</Text>
-      <ButtonCustom text="SIGN UP" color="red" onPress={() => {}} />
-      <Text style={[styles.orText, { fontFamily: 'MetroMedium' }]}>Or sign up with social account</Text>
+      <Text style={[styles.forgotPasswordText, { fontFamily: 'MetroMedium' }]}>Forgot your password?</Text>
+      <ButtonCustom text="LOGIN" color="red" onPress={() => navigation.navigate('forgetpassword')} />
+      <Text style={[styles.orText, { fontFamily: 'MetroMedium' }]}>Or login with social account</Text>
       <View style={styles.socialContainer}>
         <TouchableOpacity onPress={() => {}}>
           <Image source={require('./assets/google.jpeg')} style={styles.socialIcon} />
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems:'center',
     backgroundColor: 'white',
   },
   title: {
@@ -66,46 +65,45 @@ const styles = StyleSheet.create({
     marginBottom: 19,
   },
   textInput: {
-    width: 265,
+    width: 275,
     height: 53,
     borderWidth: 1,
-    borderRadius: 11,
-    marginBottom: 17,
-    paddingLeft: 11,
+    borderRadius: 12,
+    marginBottom: 16,
+    paddingLeft: 10,
   },
-  alreadyAccountText: {
+  forgotPasswordText: {
     alignSelf: 'center',
-    marginRight: 29,
-    marginBottom: 21,
+    marginBottom: 18,
     color: 'gray',
   },
   button: {
-    width: 265,
+    width: 275,
     height: 53,
-    borderRadius: 10,
+    borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom:16,
   },
   buttonText: {
     color: 'white',
-    fontSize: 19,
+    fontSize: 15,
     fontWeight: 'bold',
   },
   orText: {
     fontSize: 15,
     color: 'gray',
-    marginBottom: 21,
+    marginBottom: 20,
   },
   socialContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: 153,
+    maxWidth: 155,
   },
   socialIcon: {
-    width: 56,
-    height:56,
-    marginHorizontal: 10,
+    width: 49,
+    height: 49,
+    marginHorizontal: 9,
   },
 });
 

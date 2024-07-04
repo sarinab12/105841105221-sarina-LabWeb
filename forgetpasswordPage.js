@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 import { useFonts } from 'expo-font';
+import { useNavigation } from '@react-navigation/native';
 
 const ButtonCustom = ({ text, color,onPress }) => {
   return (
@@ -21,7 +22,8 @@ const TextInputCustom = ({ placeholder, color, typeKeyboard, secureTextEntry }) 
   );
 };
 
-export default function ForgotPassword () {
+export default function forgotpassword () {
+    const navigation = useNavigation();
     const [fontLoaded] = useFonts({
         MetroBold: require('./assets/fonts/Metropolis-Bold.otf'),
         MetroMedium: require('./assets/fonts/Metropolis-Medium.otf'),
@@ -40,7 +42,7 @@ export default function ForgotPassword () {
             <Text style={[styles.errorText, { fontFamily: 'MetroMedium' }]}>
              Not a valid email address. Should be your@email.com
             </Text>
-            <ButtonCustom text="SEND" color="red" onPress={() => {}} />
+            <ButtonCustom text="SEND" color="red" onPress={() => navigation.navigate('forgetpassword')} />
         </View>
     );
 }
