@@ -38,7 +38,9 @@ export default function Login() {
       <Text style={[styles.title, { fontFamily: 'MetroBold' }]}>Login</Text>
       <TextInputCustom placeholder="Email" color="gray" typeKeyboard="email-address" />
       <TextInputCustom placeholder="Password" color="gray" typeKeyboard="default" secureTextEntry={true} />
+      <TouchableOpacity onPress={() => navigation.navigate('forgetpassword')}>
       <Text style={[styles.forgotPasswordText, { fontFamily: 'MetroMedium' }]}>Forgot your password?</Text>
+      </TouchableOpacity>
       <ButtonCustom text="LOGIN" color="red" onPress={() => navigation.navigate('forgetpassword')} />
       <Text style={[styles.orText, { fontFamily: 'MetroMedium' }]}>Or login with social account</Text>
       <View style={styles.socialContainer}>

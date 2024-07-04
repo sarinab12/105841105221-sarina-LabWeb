@@ -41,7 +41,9 @@ export default function SignUp() {
       <TextInputCustom placeholder="Name" color="gray" typeKeyboard="default" />
       <TextInputCustom placeholder="Email" color="gray" typeKeyboard="email-address" />
       <TextInputCustom placeholder="Password" color="gray" typeKeyboard="default" secureTextEntry={true} />
+      <TouchableOpacity onPress={() => navigation.navigate('login')}>
       <Text style={[styles.alreadyAccountText, { fontFamily: 'MetroMedium' }]}>Already have an account?</Text>
+      </TouchableOpacity>
       <ButtonCustom text="SIGN UP" color="red" onPress={() => navigation.navigate('login')} />
       <Text style={[styles.orText, { fontFamily: 'MetroMedium' }]}>Or sign up with social account</Text>
       <View style={styles.socialContainer}>
