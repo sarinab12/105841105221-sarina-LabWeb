@@ -1,83 +1,108 @@
-import { StyleSheet, Text, View, ActivityIndicator, ScrollView } from 'react-native';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { View, Text, Button, Image } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeScreen from './HomeScreen'; 
+import ShopScreen from './ShopScreen';
+import loginPage from './loginPage';
+import Profile from './Profile';
+import HomeAktif from './assets/home-aktif.png';
+import HomeInaktif from './assets/home-inaktif.png';
+import Shop from './assets/shop-aktif.png';
+import ShopInaktif from './assets/shop-inaktif.png';
+import BagAktif from './assets/bag-activated.png';
+import BagInaktif from './assets/bag-inactive.png';
+import FavoriteAktif from './assets/favorites-activated.png';
+import FavoriteInaktif from './assets/favorites-inactive.png';
+import ProfilAktif from './assets/profil-activated.png';
+import ProfilInaktif from './assets/profil-inactive.png';
 
-const Api = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+const Tab = createBottomTabNavigator();
 
-  useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => {
-        setData(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#0000ff" />
-      </View>
-    );
-  }
-
+function MyTabs() {
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {data.map((post) => (
-        <View key={post.id} style={styles.postBox}>
-          <Text style={styles.title}>Title: {post.title}</Text>
-          <Text style={styles.body}>Body: {post.body}</Text>
-          <Text style={styles.userId}>User ID: {post.userId}</Text>
-        </View>
-      ))}
-    </ScrollView>
+    <Tab.Navigator>
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <Image
+              source={focused ? HomeAktif : HomeInaktif}
+              style={{ width: 40, height: 40 }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Shop"
+        component={ShopScreen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <Image
+              source={focused ? Shop : ShopInaktif}
+              style={{ width: 40, height: 40 }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Bag"
+        component={HomeScreen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <Image
+              source={focused ? BagAktif : BagInaktif}
+              style={{ width: 40, height: 40 }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Favorite"
+        component={HomeScreen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <Image
+              source={focused ? FavoriteAktif : FavoriteInaktif}
+              style={{ width: 40, height: 40 }}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profil"
+        component={Profile}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <Image
+              source={focused ? ProfilAktif : ProfilInaktif}
+              style={{ width: 40, height: 40 }}
+            />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
-};
+}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    backgroundColor: '#f5f5f5',
-  },
-  postBox: {
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 8,
-    padding: 15,
-    marginBottom: 10,
-    backgroundColor: '#fff',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 5,
-    color: '#333',
-  },
-  body: {
-    fontSize: 14,
-    marginBottom: 5,
-    color: '#666',
-  },
-  userId: {
-    fontSize: 12,
-    color: '#999',
-  },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+const Stack = createNativeStackNavigator();
 
-export default Api;
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={MyTabs} />
+        <Stack.Screen name="login" component={loginPage} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
