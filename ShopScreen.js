@@ -1,7 +1,14 @@
 import React from 'react';
 import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 function ShopScreen() {
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate('categories'); // Navigasi ke ShopSc
+  };
+
   return (
     <ScrollView style={styles.container}>
       {/* Header Section */}
@@ -9,6 +16,9 @@ function ShopScreen() {
         <Image source={require('./assets/CewekCool.png')} style={styles.headerImage} />
         <View style={styles.headerTextContainer}>
           <Text style={styles.headerText}>Street clothes</Text>
+          <TouchableOpacity onPress={handlePress}>
+            <Text style={styles.clickableArrow}></Text>
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -91,6 +101,11 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 36,
     fontWeight: 'bold',
+  },
+  clickableArrow: {
+    fontSize: 24,
+    color: 'red',
+    marginTop: 5,
   },
   section: {
     padding: 20,

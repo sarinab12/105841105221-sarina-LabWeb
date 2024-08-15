@@ -17,7 +17,7 @@ const VisualSearchTakePhoto = () => {
         <TouchableOpacity style={styles.cameraButton}>
           <Image
             source={require('./assets/camera.png')}
-            style={styles.cameraIcon} // Removed tintColor for original icon color
+            style={styles.cameraIcon}
           />
         </TouchableOpacity>
       </View>
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: '100%',
-    resizeMode: 'contain', 
+    resizeMode: 'contain', // Menjaga aspek rasio gambar
   },
   cameraContainer: {
     position: 'absolute',
@@ -61,14 +61,14 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
-    backgroundColor: '#FF0000', // Red button background
+    backgroundColor: '#FF0000', // Warna merah untuk tombol kamera
     justifyContent: 'center',
     alignItems: 'center',
   },
   cameraIcon: {
     width: 26,
     height: 26,
-    // Remove or adjust tintColor to make sure the icon is visible
+    tintColor: '#FFF', // Warna putih untuk ikon kamera
   },
 });
 
